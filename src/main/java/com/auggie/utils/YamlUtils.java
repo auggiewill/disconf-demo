@@ -16,7 +16,6 @@ import org.springframework.boot.env.PropertySourcesLoader;
 import org.springframework.core.env.PropertySource;
 import org.springframework.core.io.DefaultResourceLoader;
 import org.springframework.core.io.Resource;
-import org.springframework.core.io.ResourceLoader;
 
 /**
  * Describe:(描述).
@@ -30,26 +29,19 @@ public class YamlUtils {
 
 	public static PropertySource<?> loadNormalYamlMode(String yamlPath) throws IOException {
 		
-		PropertySource<?> propertySource = null;
 		String location = "classpath:/" + yamlPath;
-		ResourceLoader resourceLoader = new DefaultResourceLoader();
-		Resource resource = resourceLoader.getResource(location);
+		Resource resource = new DefaultResourceLoader().getResource(location);
+		return loadResourceYamlMode(resource);
+	}
+	
+	public static PropertySource<?> loadResourceYamlMode(Resource resource) throws IOException {
+		
+		PropertySource<?> propertySource = null;
+		String location = "classpath:/" + resource.getFilename();
+		resource.getDescription();
 		String name = "applicationConfig: [" + location + "]";
 		String group = "applicationConfig: [" + "profile=" + "]";
 		propertySource = new PropertySourcesLoader().load(resource, group, name, null);
-		return propertySource;
-	}
-	
-public static PropertySource<?> loadResourceYamlMode(Resource resource) throws IOException {
-		
-		PropertySource<?> propertySource = null;
-		resource.getFilename();
-//		String location = "classpath:/" + yamlPath;
-//		ResourceLoader resourceLoader = new DefaultResourceLoader();
-//		Resource resource = resourceLoader.getResource(location);
-//		String name = "applicationConfig: [" + location + "]";
-//		String group = "applicationConfig: [" + "profile=" + "]";
-		propertySource = new PropertySourcesLoader().load(resource, "", "", null);
 		return propertySource;
 	}
 }

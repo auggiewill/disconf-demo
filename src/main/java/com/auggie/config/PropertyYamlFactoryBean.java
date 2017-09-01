@@ -44,13 +44,13 @@ public class PropertyYamlFactoryBean {
 		DisconfStoreProcessor disconfStoreProcessor = DisconfStoreProcessorFactory.getDisconfStoreFileProcessor();
 		fileNames.forEach(fileName -> {
 			fileName = fileName.trim();
-//			String realFileName = getFileName(fileName);
 			try {
 				Resource[] resourceList = pathMatchingResourcePatternResolver.getResources(fileName);
                 for (Resource resource : resourceList) {
                     resources.add(resource);
                 }
 			} catch (IOException e) {
+				//TODO error fix
 			}
 			
 		});
@@ -58,33 +58,13 @@ public class PropertyYamlFactoryBean {
 			PropertySource source;
 			try {
 				source = YamlUtils.loadResourceYamlMode(resource);
-				disconfStoreProcessor.inject2Store("testyml.yml", new DisconfValue(null, (Map<String, Object>) source.getSource()));
+				disconfStoreProcessor.inject2Store(resource.getFilename(), new DisconfValue(null, (Map<String, Object>) source.getSource()));
 			} catch (IOException e) {
+				//TODO error fix
 			}
 		});
 	}
 	
-	private String getFileName(String fileName) {
-
-        if (fileName != null) {
-            int index = fileName.indexOf(':');
-            if (index < 0) {
-                return fileName;
-            } else {
-
-                fileName = fileName.substring(index + 1);
-
-                index = fileName.lastIndexOf('/');
-                if (index < 0) {
-                    return fileName;
-                } else {
-                    return fileName.substring(index + 1);
-                }
-
-            }
-        }
-        return null;
-    }
 
 }
 
