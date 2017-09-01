@@ -1,0 +1,8 @@
+/bin/
+/.gradle/
+/.settings/
+*.DZ_Store
+.project
+.classpath
+/target/
+/disconf/
