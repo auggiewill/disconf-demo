@@ -56,8 +56,7 @@ public class DisconfConfig {
 	@Bean
 	public ReloadablePropertiesFactoryBean reloadablePropertiesFactoryBean() {
 		ReloadablePropertiesFactoryBean bean = new ReloadablePropertiesFactoryBean();
-		bean.setLocations(Arrays.asList("classpath*:application.yml", "classpath*:application.properties"
-				, "classpath*:testyml.yml"));
+		bean.setLocations(Arrays.asList("classpath*:application.properties"));
 		return bean;
 	}
 	

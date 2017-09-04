@@ -29,23 +29,6 @@ import com.baidu.disconf.client.common.annotations.DisconfFileItem;
 @DisconfFile(filename = "testyml.yml")
 public class YmlConfig {
 	
-//	private static YmlConfig ymlConfig;
-	
-//	public YmlConfig() {
-//		
-//	}
-	
-//	public static YmlConfig getInstance() {
-//		if(ymlConfig == null){
-//			synchronized (YmlConfig.class) {
-//				if(ymlConfig == null){
-//					ymlConfig = new YmlConfig();
-//				}
-//			}
-//		}
-//		return ymlConfig;
-//	}
-	
 	private String ymlsay;
 	
 	@DisconfFileItem(name = "hello.ymlsay", associateField = "ymlsay")
